@@ -1,0 +1,4 @@
+id	label
+0	neg
+1	neu
+2	pos
