@@ -28,7 +28,6 @@
 ## 使用方式（指令）
 
 ### 1) 開始訓練（Transformer）
-
 下面以 **Chinese BERT WWM** 為例；都用 **module 執行方式**：
 
 ```
@@ -69,9 +68,7 @@ python -m src.models.infer_transformer --model_dir models/bert_sentence_cls --fi
 
 ---
 
-
 ### 2) 事件脈絡：關鍵詞 / LDA
-
 寫入：`news_event(keyphrases_json, lda_topics_json)`
 
 ```bash
@@ -86,7 +83,6 @@ python -m src.nlp.topic_keyphrase --days 120 --limit 5000 --no-lda --throttle-ms
 * 因為 LDA 在大語料上易吃 CPU/RAM，需要主題時再開 LDA，且降低 limit + passes，避免長時間滿載。
   
 ### 3) 句級連續情緒分數（-1 ~ 1）
-
 將 Transformer 機率回填到 `news_sent`：
 
 * `prob_neg / prob_neu / prob_pos`
@@ -104,9 +100,7 @@ python -m src.models.sentence_score --model_dir models/bert_sentence_cls --days 
 * 用 torch.inference_mode() 降低負載；批與批之間可 --throttle-ms 50，避免功耗/溫度尖峰。
 * 每一步都包 try/except，防止 GPU 錯誤帶崩。
 
-
 ### 4) 文級（新聞級）分數彙總
-
 把句級平均成文級，寫入 `news_doc_sentiment`
 
 ```bash
@@ -114,7 +108,6 @@ python -m src.models.doc_aggregate --days 120
 ```
 
 ### 5) 實體關聯（公司/產業）
-
 用字典 `data/entities/companies.yaml` 做匹配，寫入 `news_entity(matched_json)`
 
 ```bash
@@ -123,7 +116,6 @@ python -m src.etl.entity_link --days 120 --limit 5000 --gaz data/entities/compan
 可以在 YAML 裡擴充更多公司與別名；之後要升級為 NER / Linking 也能替換這個模組。
 
 ### 6) 啟動 API
-
 ```
 # 建議先設定模型輸出資料夾
 set MODEL_DIR=models/bert_sentence_cls
@@ -170,6 +162,5 @@ python -m src.etl.entity_link --days 120 --limit 5000 --gaz data/entities/compan
 ```bash
 uvicorn src.app.main_strict:app --reload
 python -m streamlit run src/dashboard/report_strict.py
-
 ```
 ---

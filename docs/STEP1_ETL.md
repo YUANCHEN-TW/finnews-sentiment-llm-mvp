@@ -12,7 +12,7 @@
 - `src/app/storage/models.py`： 把資料表結構集中並使用 Unicode 欄位（適配 MSSQL）
 - `src/etl/demo_seed.py`： 改為使用上面的 models.py（MSSQL 也可 seed）
 - `src/etl/rss_to_db.py`： 從 RSS 抓新聞→寫入 SQL Server 的指令稿（可多個 --url），寫入 `news`
-- 
+  
 ## 使用方式（指令）
 ```bash
 # 擷取原始新聞（範例）
@@ -22,7 +22,6 @@ python -m src.etl.rss_to_db --url "https://<你的RSS1>" --url "https://<你的R
 ```
 
 ## 常見錯誤排除
-
 * **`pyodbc.Error: ('01000', ...) Driver not found`**
   → 尚未安裝 ODBC Driver 18；請安裝後重開命令列。
 

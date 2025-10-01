@@ -30,7 +30,6 @@
 ## 使用方式（指令）
 
 ### 1) 產生日度 Signals（CPU、資源友善）
-
 ```
 python -m src.signals.build_signals --days 120 --limit 50000 --throttle-ms 5 --nan-policy null
 ```
@@ -49,7 +48,6 @@ python -m src.signals.build_signals --days 120 --limit 50000 --throttle-ms 5 \
 
 
 ## 指標定義（簡版）
-
 * `mean_score`：該日所有新聞的文級情緒平均（-1~1）
 * `ewma_20`：20日指數移動平均（平滑趨勢）
 * `zscore_30`：30日窗口的標準化指標（偵測偏離常態）
