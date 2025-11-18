@@ -91,3 +91,8 @@ def get_report(dt: str, top_k: int = Query(default=8, ge=1, le=int(os.environ.ge
         return ReportResp(date=dt, top_k=top_k, report=txt)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"生成失敗: {e}")
+    
+# ---------- /health ---------- branch: feature/test-devops
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
