@@ -30,4 +30,3 @@ yake
 gensim
 google-genai
 plotly
-pytest
